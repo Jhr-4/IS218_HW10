@@ -15,7 +15,7 @@ Fixtures:
 
 # Standard library imports
 from builtins import range
-from datetime import datetime
+from datetime import datetime, timedelta
 from unittest.mock import patch
 import uuid
 
@@ -63,6 +63,38 @@ async def async_client(db_session):
             yield client
         finally:
             app.dependency_overrides.clear()
+
+@pytest.fixture
+async def user_token(verified_user):
+    token_data = {
+        "sub": verified_user.email,
+        "role": str(verified_user.role.name) if hasattr(verified_user, "role") else "USER",
+    }
+    access_token_expires = timedelta(minutes=15)
+    return create_access_token(data=token_data, expires_delta=access_token_expires)
+
+@pytest.fixture
+async def admin_token(admin_user):
+    token_data = {
+        "sub": admin_user.email,
+        "role": str(admin_user.role.name) if hasattr(admin_user, "role") else "ADMIN",
+    }
+    access_token_expires = timedelta(minutes=15)
+    return create_access_token(data=token_data, expires_delta=access_token_expires)
+
+import pytest
+from datetime import timedelta
+from app.services.jwt_service import create_access_token
+
+@pytest.fixture
+async def manager_token(manager_user):
+    token_data = {
+        "sub": manager_user.email,
+        "role": str(manager_user.role.name) if hasattr(manager_user, "role") else "MANAGER",
+    }
+    access_token_expires = timedelta(minutes=15)
+    return create_access_token(data=token_data, expires_delta=access_token_expires)
+
 
 @pytest.fixture(scope="session", autouse=True)
 def initialize_database():
