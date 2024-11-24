@@ -66,6 +66,8 @@ class UserService:
             new_user.verification_token = generate_verification_token()
            
             new_nickname = validated_data.get('nickname')
+            if not new_nickname:
+                new_nickname = generate_nickname()
             while await cls.get_by_nickname(session, new_nickname):
                 logger.error("User with given nickname already existed. Generating random one.")
                 new_nickname = generate_nickname()
