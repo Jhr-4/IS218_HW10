@@ -70,9 +70,9 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: jayr4/wis_club_api:${{ github.sha }} # Uses the Git SHA for tagging
+          tags: jayr4/is218_hw10:${{ github.sha }} # Uses the Git SHA for tagging
           platforms: linux/amd64,linux/arm64 # Multi-platform support
-          cache-from: type=registry,ref=woffee/is218_hw10:cache
+          cache-from: type=registry,ref=jhr4/is218_hw10:cache
           cache-to: type=inline,mode=max
           
       - name: Scan the Docker image
