@@ -6,7 +6,7 @@
 * [Issue 3:](https://github.com/Jhr-4/IS218_HW10/issues/5) There was no check to make sure Github and LinkedIn are correct links from those platforms. Added validation for both.
 * [Issue 4:](https://github.com/Jhr-4/IS218_HW10/issues/7) Login asks for username, but only accepted email. Fixed to accept both.
 * [Issue 5:](https://github.com/Jhr-4/IS218_HW10/issues/9) Nicknames in each example was differet. This creates confusion and isn't consistant.
-* [Issue 6:](https://github.com/Jhr-4/IS218_HW10/issues/13) Inconsistant ordering of example output in List Users. Doesn't match other examples or the actual output.
+* [Issue 6:](https://github.com/Jhr-4/IS218_HW10/issues/14) Inconsistant UUID's in examples & List Users schemas example had hard to read code with missing items.
 
 ## Docker Hub
 ![DockerHub Deployed Image]()
