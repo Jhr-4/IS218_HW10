@@ -86,6 +86,7 @@ def get_random_nickname() -> str:
     return generate_nickname()
 
 random_nickname = get_random_nickname()
+random_uuid4 = uuid.uuid4()
 
 class UserBase(BaseModel):
     email: EmailStr = Field(..., example="john.doe@example.com")
@@ -128,7 +129,7 @@ class UserUpdate(UserBase):
         return values
 
 class UserResponse(UserBase):
-    id: uuid.UUID = Field(..., example=uuid.uuid4())
+    id: uuid.UUID = Field(..., example=random_uuid4)
     role: UserRole = Field(default=UserRole.AUTHENTICATED, example="AUTHENTICATED")
     email: EmailStr = Field(..., example="john.doe@example.com")
     nickname: Optional[str] = Field(None, min_length=3, pattern=r'^[\w-]+$', example=random_nickname)    
@@ -145,12 +146,17 @@ class ErrorResponse(BaseModel):
 
 class UserListResponse(BaseModel):
     items: List[UserResponse] = Field(..., example=[{
-        "id": uuid.uuid4(), "nickname": random_nickname, "email": "john.doe@example.com",
-        "first_name": "John", "bio": "Experienced developer", "role": "AUTHENTICATED",
-        "last_name": "Doe", "bio": "Experienced developer", "role": "AUTHENTICATED",
-        "profile_picture_url": "https://example.com/profiles/john.jpg", 
-        "linkedin_profile_url": "https://linkedin.com/in/johndoe", 
-        "github_profile_url": "https://github.com/johndoe"
+        "email": "john.doe@example.com",
+        "nickname": random_nickname,
+        "first_name": "John",
+        "last_name": "Doe",
+        "bio": "Experienced software developer specializing in web applications.",
+        "profile_picture_url": "https://example.com/profiles/john.jpg",
+        "linkedin_profile_url": "https://linkedin.com/in/johndoe",
+        "github_profile_url": "https://github.com/johndoe",
+        "id": random_uuid4,
+        "role": "AUTHENTICATED",
+        "is_professional": False
     }])
     total: int = Field(..., example=100)
     page: int = Field(..., example=1)
