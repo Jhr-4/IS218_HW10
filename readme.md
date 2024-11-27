@@ -16,6 +16,8 @@ This assignment taught me a lot. Not only did I learn more about using technolog
 
 Additionally, through this assignment, I got more insight into how user registration actually works and how to go about in creating the functionality ensuring security and validation. It was also interesting to use the email verify website as I didn't know a website exists to just have test emails. After making these changes, the process of creating issues and branches also was important. It helped enhance my workflow by allowing me to see my progress while being documented as usually I just do everything in one commit/branch and push it at the end.
 
+## Pytest --Cov > 90%
+![Pytest --cov 94%](/PytestCov.png)
 
 ## Useage: 
 * Create an account on [mailtrap](https://mailtrap.io/), Create a SMTP Email Testing, Copy the username & password.
